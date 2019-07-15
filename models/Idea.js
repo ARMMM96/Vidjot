@@ -1,4 +1,4 @@
-const mogooes = require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -7,14 +7,14 @@ const IdeaSchema = new Schema({
         type: String,
         require: true
     },
-    details:{
-        type:String,
+    details: {
+        type: String,
         require: true
     },
-    date:{
-        type: Date, 
+    date: {
+        type: Date,
         default: Date.now
     }
 });
 
-mongoose.modle('ideas', IdeaSchema);
+mongoose.model('ideas', IdeaSchema);

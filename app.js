@@ -46,6 +46,21 @@ app.get('/about', (req, res) => {
     res.render('ABOUT');
 });
 
+// Idea Index Page
+app.get('/ideas', (req, res) => {
+    Idea.find({})
+        .sort({date:'desc'})
+        .then(ideas => {
+            res.render('ideas/index', {
+                ideas: ideas
+            });
+        });
+});
+
+// Add Idea form
+app.get('/ideas/add', (req, res) => {
+    res.render('ideas/add');
+});
 // Process Form
 app.post('/ideas', (req, res) => {
     let errors = [];
@@ -57,7 +72,7 @@ app.post('/ideas', (req, res) => {
     } else if (!req.body.details) {
         errors.push({ text: 'Please add a details' });
     }
-    
+
     if (errors.length > 0) {
         res.render('ideas/add', {
             errors: errors,
@@ -69,17 +84,15 @@ app.post('/ideas', (req, res) => {
             title: req.body.title,
             details: req.body.details
         }
-       new Idea(newUser).save()
-       .then(idea => {
-            res.redirect('/ideas');
-       })
+        new Idea(newUser)
+            .save()
+            .then(idea => {
+                res.redirect('/ideas');
+            })
     }
 });
 
-// Add Idea form
-app.get('/ideas/add', (req, res) => {
-    res.render('ideas/add');
-});
+
 const port = 5000;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

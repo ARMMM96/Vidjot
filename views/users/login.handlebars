@@ -3,17 +3,17 @@
         <div class="card card-body">
             <img src="/img/vimeo.png" alt="Logo" class="logo">
             <h3 class="text-center">Account Login</h3>
-            <form>
+            <form method="post" action="/users/login">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="Email" class="form-control" name="email" required>
                 </div>
+                <div class="form-group">
+                    <label for="passowrd">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary"> Submit</button>
             </form>
-            <div class="form-group">
-                <label for="passowrd">Password</label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary"> Submit</button>
         </div>
     </div>
 </div>
